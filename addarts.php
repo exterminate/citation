@@ -1,59 +1,34 @@
 <?php
-	class MyDB extends SQLite3
-	{
-	    function __construct()
-	    {
+	class MyDB extends SQLite3 {
+	    function __construct() {
 	        $this->open('myDatabase.db');
 	    }
 	}
-		
 	$db = new MyDB();
-
-
-	$db->exec('
-		CREATE TABLE if not exists users (
-		ID INT PRIMARY KEY NOT NULL,
-	 	authors TEXT NOT NULL,
-	 	journal TEXT NOT NULL,
-	 	year  TEXT NOT NULL,
-	 	volume TEXT NOT NULL,
-	 	issue TEXT NOT NULL,
-	 	lastPage TEXT NOT NULL,
-	 	user TEXT NOT NULL,
-		hits TEXT NOT NULL,
-		title TEXT NOT NULL,
-		pages TEXT NOT NULL,
-		abstract TEXT NOT NULL,
-		doi TEXT NOT NULL
-	 	)');
-	
+	$db->exec('CREATE TABLE if not exists citation (ID INT PRIMARY KEY NOT NULL,authors TEXT NOT NULL,journal TEXT NOT NULL,	year  TEXT NOT NULL,volume TEXT NOT NULL,issue TEXT NOT NULL,lastPage TEXT NOT NULL,user TEXT NOT NULL,hits TEXT NOT NULL,title TEXT NOT NULL,pages TEXT NOT NULL,abstract TEXT NOT NULL,doi TEXT NOT NULL)');
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Add arts</title>
+	<link rel="stylesheet" href="citationstyle.css">
 </head>
 <body>
+
 <?php 
 	include "header.php";
 	include "nav.php";
+	include "funct.inc.php";
 	
-	$query = 'SELECT * FROM users'; 	
-	
-	if($result = $db->query($query))
-	{
-	  while($row = $result->fetchArray())
-	  {
-	    print("ID: {$row['ID']} <br />" . "Name: {$row['authors']} <br />");
-	  }
-	}
-	else
-	{
-	  die($error);
-	}
+?>
+
+<div class='main'>
+
+<?php
 	
 	$fileData = file_get_contents("wokpapers.php");
+	$filedata = str_replace("'", "&apos;", $fileData);
 	$fileData = str_replace("<br>",";",$fileData);
 	$newprop = strip_tags($fileData,"<td>");	
 	$newprop = str_replace('td valign="top"','td',$newprop);
@@ -79,7 +54,7 @@
         // abstract
         if(trim(str_replace("</td>","",$newarray[$counter])) == "AB")
             $finalArray[$hit]['AB'] = trim(str_replace("</td>","",$newarray[$counter+1]));
-        
+        	
         // publication year
         if(trim(str_replace("</td>","",$newarray[$counter])) == "PY")
             $finalArray[$hit]['PY'] = trim(str_replace("</td>","",$newarray[$counter+1])); 
@@ -109,38 +84,51 @@
         $counter++;
     }
 	   
-    echo "<hr><pre>";   
-    //print_r($finalArray);
-    echo "</pre>";
-	    
-    // add array to database - citation table
-    // ID, authors, journal, year, volume, issue, lastPage, user, hits, title, pages, abstract    
-	    
-
-    foreach($finalArray as $item){
-        $TI = $item['TI'];
-        $AF = $item['AF'];
-        $SO = $item['SO'];
-        $PY = $item['PY'];
-        $VL = $item['VL'];
-        $IS = $item['IS'];
-        $BP = $item['BP'];
-        $EP = $item['EP'];
-        $AB = $item['AB'];
-        $DI = $item['DI'];
-
-		$sql = "INSERT INTO citation (title,authors,journal,year,volume,issue,pages,lastPage,abstract,doi) 
-	        VALUES ('$TI','$AF','$SO','$PY','$VL','$IS','$BP','$EP','$AB','$DI')";
-		$db->exec($query);
-	}
 	
-	$checkSecond = $db->query("SELECT year FROM users WHERE ID <= 30");
-	while($rowCount = $checkSecond->fetchArray()){
-		echo $rowCount['year']	. "!<br>";		
-	}
+	$ID = findHighestID($db);  
+    
+	foreach($finalArray as $item){
+        $TI = str_replace("'", "&apos;", $item['TI']);
+        $AF = str_replace("'", "&apos;", $item['AF']);
+        $SO = str_replace("'", "&apos;", $item['SO']);
+        $PY = str_replace("'", "&apos;", $item['PY']);
+        $VL = str_replace("'", "&apos;", $item['VL']);
+        $IS = str_replace("'", "&apos;", $item['IS']);
+        $BP = str_replace("'", "&apos;", $item['BP']);
+        $EP = str_replace("'", "&apos;", $item['EP']);
+        if(isset($item['AB']))
+			$AB = str_replace("'", "&apos;", $item['AB']);
+		else
+			$AB = "";
+	    $DI = str_replace("'", "&apos;", $item['DI']);
+
 	
+		$sql = "INSERT INTO citation (ID,title,authors,journal,year,volume,issue,pages,lastPage,abstract,doi,user,hits) 
+	        VALUES ('$ID','$TI','$AF','$SO','$PY','$VL','$IS','$BP','$EP','$AB','$DI','','')";
+		$db->exec($sql);
+		$ID++;
+	}
+
+
+	$query = 'SELECT * FROM citation'; 	
+		
+	if($result = $db->query($query))
+	{
+	  while($row = $result->fetchArray())
+	  {
+	    print("ID: {$row['ID']} - Name: {$row['authors']} <br />");
+	  }
+	}
+	else
+	{
+	  die($error);
+	}
+
+
+
 	
 	    
 ?>
+</div>
 </body>
 </html>

@@ -1,0 +1,46 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: url("site-header-bg.png") no-repeat center top;
+	font-family: sans-serif;
+}
+
+a{
+	text-decoration: none;
+}
+
+header h1 {
+	color: white;
+	padding: 2px 0 0 0;
+}
+
+.main {
+	background: white;
+}
+
+
+
+.main, nav, header {
+	width: 960px;
+	margin: 0 auto;
+}
+
+nav {
+	background: #003372;
+	margin-top: 183px;
+	padding: 10px 0;
+}
+
+nav a {
+	color: white;
+	display: inline; 
+	padding: 10px;
+}
+
+nav a:hover {
+	background: black;
+}
+
