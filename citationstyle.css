@@ -44,3 +44,29 @@ nav a:hover {
 	background: black;
 }
 
+.searchForm {
+	padding: 10px;
+}
+
+.searchForm input[type='text'],.searchForm textarea {
+	width: 100%;
+	font-size: 1em;
+	padding: 5px 0;
+	margin-bottom: 10px;
+}
+
+
+.records {
+	padding: 10px;
+}
+
+.records div {
+	background: #ddd;
+	border: 1px solid #ddd;
+	margin: 5px 0;
+	padding: 10px;
+}
+
+.records div:hover {
+	border: 1px solid #bbb;	
+}
