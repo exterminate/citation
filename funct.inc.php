@@ -12,8 +12,8 @@
 	
 	function searchMatch($dbarray,$title,$descr) { // search database
 
-		$before = array(",",";",":","*","<",">","'","."," and "," to "," the "," for "," it "," with "); 
-		$after = array("","","","","","","",""," "," "," "," "," "," ");
+		$before = array(",",";",":","*","<",">","'","."," and "," to "," the "," for "," it "," with ","-"); 
+		$after = array("","","","","","","",""," "," "," "," "," "," "," ");
 
 
 		$titArray = explode(" ", trim(str_replace($before,$after,$title)));
@@ -61,7 +61,8 @@
 		foreach($dbarray as $key => $item) {
 			if($item['hits'] > 0) {
 				$toReturn .= "<div id='".$key."'>";
-				$toReturn .= "Title: ".$item['title'].", match: ".$item['hits'];
+				$toReturn .= "<p class='title'>".$item['title']."</p>
+								<p class='abstract'>".$item['abstract']."</p><p class='match'>".$item['hits']."</p>";
 				$toReturn .= "</div>";
 			}
 		}

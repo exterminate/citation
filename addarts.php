@@ -11,8 +11,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<?php include "head.php"; ?>
 	<title>Add arts</title>
-	<link rel="stylesheet" href="citationstyle.css">
 </head>
 <body>
 
@@ -87,6 +87,17 @@
 	
 	$ID = findHighestID($db);  
     
+	$search = "SELECT * FROM citation";
+	$error = "Could not get list";	
+	if($result = $db->query($query)) {
+		while($row = $result->fetchArray()) {
+			$dbarray[] = $row;
+		}
+	}else{
+		die($error);
+	}
+	
+
 	foreach($finalArray as $item){
         $TI = str_replace("'", "&apos;", $item['TI']);
         $AF = str_replace("'", "&apos;", $item['AF']);
@@ -102,7 +113,7 @@
 			$AB = "";
 	    $DI = str_replace("'", "&apos;", $item['DI']);
 
-	
+		if() 
 		$sql = "INSERT INTO citation (ID,title,authors,journal,year,volume,issue,pages,lastPage,abstract,doi,user,hits) 
 	        VALUES ('$ID','$TI','$AF','$SO','$PY','$VL','$IS','$BP','$EP','$AB','$DI','','')";
 		$db->exec($sql);
@@ -112,15 +123,11 @@
 
 	$query = 'SELECT * FROM citation'; 	
 		
-	if($result = $db->query($query))
-	{
-	  while($row = $result->fetchArray())
-	  {
-	    print("ID: {$row['ID']} - Name: {$row['authors']} <br />");
-	  }
-	}
-	else
-	{
+	if($result = $db->query($query)) {
+	  while($row = $result->fetchArray()) {
+	    	print("ID: {$row['ID']} - Name: {$row['authors']} <br />");
+		}
+	} else {
 	  die($error);
 	}
 

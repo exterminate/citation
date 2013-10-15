@@ -5,7 +5,7 @@
 
 body {
 	background: url("site-header-bg.png") no-repeat center top;
-	font-family: sans-serif;
+	font-family: 'PT Sans', sans-serif;
 }
 
 a{
@@ -30,7 +30,7 @@ header h1 {
 
 nav {
 	background: #003372;
-	margin-top: 183px;
+	margin-top: 176px;
 	padding: 10px 0;
 }
 
@@ -69,4 +69,30 @@ nav a:hover {
 
 .records div:hover {
 	border: 1px solid #bbb;	
+}
+
+.title, .abstract {
+	padding-bottom: 5px;
+}	
+
+.title {
+	font-weight: bold;
+}
+
+.title:before {
+	content: "Title: "
+}
+
+.abstract {
+	text-decoration: italic;	
+}
+
+.abstract:before {
+	content: "Abstract: ";
+	font-weight: bold;
+} 
+
+.match:before {
+	content: "Match: ";
+	font-weight: bold;
 }

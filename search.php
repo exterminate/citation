@@ -12,7 +12,7 @@
 <html>
 <head>
 	<title>Search</title>
-	<link rel="stylesheet" href="citationstyle.css">
+	<?php include "head.php"; ?>
 </head>
 <body>
 
@@ -33,25 +33,6 @@
 	</form>
 
 <?php
-/*
-$dbarray = array(
-	array(
-		'title' => 'batteries doing stuff with iron',
-		'descr' => 'iron is used to model and capacitator, and energy',
-		'hit' => ''
-	),
-	array(
-		'title' => 'energy and power',
-		'descr' => 'power, energy and lead awesome.',
-		'hit' => ''
-	),
-	array(
-		'title' => 'batteries with lead',
-		'descr' => 'lead is used to model and capacitator, and energy',
-		'hit' => ''
-	)
-);
-*/
 
 
 $query = 'SELECT * FROM citation'; 	
@@ -60,10 +41,6 @@ if($result = $db->query($query)) {
 	while($row = $result->fetchArray()) {
 		$dbarray[] = $row;
 	}
-	//$dbarray = $result->fetchArray();
-	echo "<pre>";
-	//print_r($dbarray);
-	echo "</pre>";
 }else{
 	die($error);
 }
