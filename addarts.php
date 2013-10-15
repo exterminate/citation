@@ -12,7 +12,7 @@
 <html>
 <head>
 	<?php include "head.php"; ?>
-	<title>Add arts</title>
+	<title>Add articles</title>
 </head>
 <body>
 
@@ -94,8 +94,18 @@
 		while($row = $result->fetchArray()) {
 			$dbarray[] = $row;
 		}
+		$dbarray[] = array('doi'=>'xxxxxxxxx');
 	}else{
 		die($error);
+	}
+	
+	function searchForId($idDOI, $array) {
+		foreach ($array as $key => $val) {
+			if ($val['doi'] === $idDOI) {
+		    	return $key;
+		    }
+		}
+	   return null;
 	}
 
 	// prepare variables for the database
@@ -115,15 +125,18 @@
 	    $DI = str_replace("'", "&apos;", $item['DI']);
 		
 		// look for duplicates
-		$key = array_search($PY, $dbarray);
-		if($DI == $dbarray[$key]['doi']) 
-			echo "already got it";
-		
-		//insert into database
-		$sql = "INSERT INTO citation (ID,title,authors,journal,year,volume,issue,pages,lastPage,abstract,doi,user,hits) 
-	        VALUES ('$ID','$TI','$AF','$SO','$PY','$VL','$IS','$BP','$EP','$AB','$DI','','')";
-		//$db->exec($sql);
-		$ID++;
+	
+		$keyForDOI = searchForId($DI, $dbarray);
+		if(!isset($keyForDOI)) {	
+			//echo $DI . " _ " . $dbarray[$key]['doi'];
+				
+			//insert into database
+			$sql = "INSERT INTO citation (ID,title,authors,journal,year,volume,issue,pages,lastPage,abstract,doi,user,hits) 
+		        VALUES ('$ID','$TI','$AF','$SO','$PY','$VL','$IS','$BP','$EP','$AB','$DI','','')";
+			$db->exec($sql);
+			$ID++;
+			
+		}
 	}
 
 	// probably don't need this
@@ -131,7 +144,7 @@
 		
 	if($result = $db->query($query)) {
 	  while($row = $result->fetchArray()) {
-	    	print("ID: {$row['ID']} - Name: {$row['authors']} <br />");
+	    	print("ID: {$row['ID']} - Name: {$row['authors']}  - doi: {$row['doi']} <br />");
 		}
 	} else {
 	  die($error);
