@@ -87,17 +87,18 @@
 	
 	$ID = findHighestID($db);  
     
+	// find what's already in the database
 	$search = "SELECT * FROM citation";
 	$error = "Could not get list";	
-	if($result = $db->query($query)) {
+	if($result = $db->query($search)) {
 		while($row = $result->fetchArray()) {
 			$dbarray[] = $row;
 		}
 	}else{
 		die($error);
 	}
-	
 
+	// prepare variables for the database
 	foreach($finalArray as $item){
         $TI = str_replace("'", "&apos;", $item['TI']);
         $AF = str_replace("'", "&apos;", $item['AF']);
@@ -112,15 +113,20 @@
 		else
 			$AB = "";
 	    $DI = str_replace("'", "&apos;", $item['DI']);
-
-		if() 
+		
+		// look for duplicates
+		$key = array_search($PY, $dbarray);
+		if($DI == $dbarray[$key]['doi']) 
+			echo "already got it";
+		
+		//insert into database
 		$sql = "INSERT INTO citation (ID,title,authors,journal,year,volume,issue,pages,lastPage,abstract,doi,user,hits) 
 	        VALUES ('$ID','$TI','$AF','$SO','$PY','$VL','$IS','$BP','$EP','$AB','$DI','','')";
-		$db->exec($sql);
+		//$db->exec($sql);
 		$ID++;
 	}
 
-
+	// probably don't need this
 	$query = 'SELECT * FROM citation'; 	
 		
 	if($result = $db->query($query)) {

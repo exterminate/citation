@@ -55,14 +55,17 @@
 		}
 
 		array_multisort($hits,SORT_DESC,$dbarray);
-
+		
+		//results
 		$toReturn = "<div class='records'>";
 		
+		// put each record in a div
 		foreach($dbarray as $key => $item) {
 			if($item['hits'] > 0) {
 				$toReturn .= "<div id='".$key."'>";
-				$toReturn .= "<p class='title'>".$item['title']."</p>
-								<p class='abstract'>".$item['abstract']."</p><p class='match'>".$item['hits']."</p>";
+				$toReturn .= "	<p class='title'>".$item['title']."</p>
+								<p class='abstract'>".$item['abstract']."</p>
+								<p class='match'>".$item['hits']."</p>";
 				$toReturn .= "</div>";
 			}
 		}
