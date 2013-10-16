@@ -62,10 +62,16 @@
 		// put each record in a div
 		foreach($dbarray as $key => $item) {
 			if($item['hits'] > 0) {
-				$toReturn .= "<div id='".$key."'>";
+				$toReturn .= "<div class='individualRecord' id='".$key."'>";
 				$toReturn .= "	<p class='title'>".$item['title']."</p>
 								<p class='abstract'>".$item['abstract']."</p>
-								<p class='match'>".$item['hits']."</p>";
+								<p class='match'>".$item['hits']."</p>
+								<div class='citation'>
+									<p class='journal'>".$item['journal']."</p>
+									<p class='year'>".$item['year']."</p>
+									<p class='volume'>".$item['volume']."</p>
+									<p class='pages'>".$item['pages']."</p>
+								</div>";
 				$toReturn .= "</div>";
 			}
 		}

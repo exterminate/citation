@@ -60,14 +60,14 @@ nav a:hover {
 	padding: 10px;
 }
 
-.records div {
+.records .individualRecord {
 	background: #ddd;
 	border: 1px solid #ddd;
 	margin: 5px 0;
 	padding: 10px;
 }
 
-.records div:hover {
+.records .individualRecord:hover {
 	border: 1px solid #bbb;	
 }
 
@@ -95,4 +95,20 @@ nav a:hover {
 .match:before {
 	content: "Match: ";
 	font-weight: bold;
+}
+
+.citation p {
+	display: inline;
+}
+
+.journal {
+	text-decoration: italic;
+}
+
+.volume {
+	font-weight: bold;
+}
+
+.journal:after, .volume:after, .year:after {
+	content: ", ";
 }

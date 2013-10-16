@@ -125,11 +125,9 @@
 	    $DI = str_replace("'", "&apos;", $item['DI']);
 		
 		// look for duplicates
-	
 		$keyForDOI = searchForId($DI, $dbarray);
 		if(!isset($keyForDOI)) {	
-			//echo $DI . " _ " . $dbarray[$key]['doi'];
-				
+							
 			//insert into database
 			$sql = "INSERT INTO citation (ID,title,authors,journal,year,volume,issue,pages,lastPage,abstract,doi,user,hits) 
 		        VALUES ('$ID','$TI','$AF','$SO','$PY','$VL','$IS','$BP','$EP','$AB','$DI','','')";
