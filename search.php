@@ -11,10 +11,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="js/searchResults.js"></script>
 	<title>Search</title>
 	<?php include "head.php"; ?>
 </head>
 <body>
+
 
 <?php 
 	include "header.php";
@@ -24,6 +27,7 @@
 ?>
 
 <div class='main'>
+<div id='output'></div>
 	<form action='search.php' method='POST' class='searchForm'>
 		<label>Title</label><br>
 		<input type='text' name='title'><br>
@@ -31,6 +35,7 @@
 		<textarea name='abstract'></textarea><br>
 		<input type='submit' value='Search' name='search'>
 	</form>
+	<button id='copy'>Copy</button>	
 
 <?php
 
@@ -52,7 +57,6 @@ if(isset($_POST['search'])) {
 	echo searchMatch($dbarray,$title,$descr);
 }
 ?>
-
 
 </div>
 </body>

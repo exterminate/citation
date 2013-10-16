@@ -64,14 +64,17 @@
 			if($item['hits'] > 0) {
 				$toReturn .= "<div class='individualRecord' id='".$key."'>";
 				$toReturn .= "	<p class='title'>".$item['title']."</p>
-								<p class='abstract'>".$item['abstract']."</p>
+								<p class='abstract' hidden>".$item['abstract']."</p>
 								<p class='match'>".$item['hits']."</p>
-								<div class='citation'>
+								<div class='citation' hidden>
 									<p class='journal'>".$item['journal']."</p>
 									<p class='year'>".$item['year']."</p>
 									<p class='volume'>".$item['volume']."</p>
 									<p class='pages'>".$item['pages']."</p>
-								</div>";
+								</div>
+								<input type='checkbox' class='chk' id='chk".$key."'/>
+								<span class='expand'>>>></span>
+								";
 				$toReturn .= "</div>";
 			}
 		}
