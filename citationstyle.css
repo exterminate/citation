@@ -71,7 +71,7 @@ nav a:hover {
 	border: 1px solid #bbb;	
 }
 
-.title, .abstract {
+.title, .abstract, .match {
 	padding-bottom: 5px;
 }	
 
@@ -84,7 +84,7 @@ nav a:hover {
 }
 
 .abstract {
-	text-decoration: italic;	
+	font-style: italic;	
 }
 
 .abstract:before {
@@ -102,7 +102,7 @@ nav a:hover {
 }
 
 .journal {
-	text-decoration: italic;
+	font-style: italic;
 }
 
 .volume {
