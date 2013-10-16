@@ -1,4 +1,5 @@
 <?php
+
 	class MyDB extends SQLite3 {
 	    function __construct() {
 	        $this->open('myDatabase.db');
@@ -27,8 +28,32 @@
 
 <?php
 	
-	$fileData = file_get_contents("wokpapers.php");
-	$filedata = str_replace("'", "&apos;", $fileData);
+	
+// Configuration
+      //$max_filesize = 524288; // Maximum filesize in BYTES (currently 0.5MB).
+	$upload_path = './files/'; // The place the files will be uploaded to (currently a 'files' directory).
+ 
+	$filename = $_FILES['file']['name']; // Get the name of the file (including file extension).
+	$ext = substr($filename, strpos($filename,'.'), strlen($filename)-1); // Get the extension from the filename.
+ 
+ 
+//the file type is checked by dropzone.js so dont need to check here
+ 
+   // Now check the filesize, if it is too large then DIE and inform the user.
+  // if(filesize($_FILES['file']['tmp_name']) > $max_filesize)
+   //   die('The file you attempted to upload is too large.');
+ 
+   // Check if we can upload to the specified path, if not DIE and inform the user.
+	if(!is_writable($upload_path))
+		die('You cannot upload to the specified directory, please CHMOD it to 777.');
+ 
+	$fileData = file_get_contents($_FILES['file']['tmp_name']);
+   //$array = explode("<p>",$fileData);
+	
+	
+	
+	//$fileData = file_get_contents("wokpapers.php"); don't need thi if uploading
+	$fileData = str_replace("'", "&apos;", $fileData);
 	$fileData = str_replace("<br>",";",$fileData);
 	$newprop = strip_tags($fileData,"<td>");	
 	$newprop = str_replace('td valign="top"','td',$newprop);
