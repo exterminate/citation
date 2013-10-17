@@ -27,7 +27,10 @@
 ?>
 
 <div class='main'>
-<form action="addarts.php" class="dropzone">
+	<div class='searchForm'>
+		<p>First, export from Web of Science and save as a .htm file then drop the file in the area below.</p>
+	</div>
+	<form action="addarts.php" class="dropzone">
 
 </div>
 </body>

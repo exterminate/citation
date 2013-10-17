@@ -44,7 +44,7 @@ nav a:hover {
 	background: black;
 }
 
-.searchForm {
+.searchForm,.records {
 	padding: 10px;
 }
 
@@ -56,9 +56,7 @@ nav a:hover {
 }
 
 
-.records {
-	padding: 10px;
-}
+
 
 .records .individualRecord {
 	background: #ddd;
