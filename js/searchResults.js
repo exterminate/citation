@@ -12,6 +12,21 @@ $(document).ready(function(){
 		
 		$(this).parent().find('.abstract').toggle(400);
 		$(this).parent().find('.citation').toggle(400);
+		
+		var text = $(this).text();
+		
+		if(text == "Show abstract >>>"){
+			$(this).text("Hide abstract <<<");
+		} else {
+			$(this).text("Show abstract >>>");
+		}
+		
+	});
+	
+	$('.individualRecord').bind('click', function(){ 
+		var $checkbox = $(this).find(':checkbox');
+		$checkbox[0].checked = !$checkbox[0].checked;
+		$checkbox.trigger('change');
 	});
 	
 	$('#copy').click(function(){
