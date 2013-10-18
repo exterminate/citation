@@ -50,7 +50,7 @@
 
 			<?php
 			if(!empty($postTitle) || !empty($postAbstract))
-				echo "<button id='copy' class='positionRight'>Copy</button>";
+				echo "<div id='copy' class='positionRight'>Copy</div>";
 			?>
 			
 		</div>
