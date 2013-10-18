@@ -110,3 +110,16 @@ nav a:hover {
 .journal:after, .volume:after, .year:after {
 	content: ", ";
 }
+
+.expand {
+	background: #4683ea;
+	padding: 10px;
+	color: white;
+	border: 0;
+	outline: none;
+	box-shadow: 0 1px 0 #003372,0 2px 0 #003372,0 3px 0 #003372,0 4px 0 #003372;
+}
+
+.expand:hover {
+	background: #4683ba;
+}

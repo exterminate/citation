@@ -73,7 +73,7 @@
 									<p class='pages'>".$item['pages']."</p>
 								</div>
 								<input type='checkbox' class='chk' id='chk".$key."'/>
-								<span class='expand'>>>></span>
+								<button class='expand'>Show abstract >>></button>
 								";
 				$toReturn .= "</div>";
 			}
@@ -82,6 +82,12 @@
 		return $toReturn;
 	}
 	
+	function isPostSet($posted) {
+		if(isset($posted))
+			return $posted;
+		else 	
+			return "";
+	}
 	
 	
 ?>

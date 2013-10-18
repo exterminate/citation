@@ -30,9 +30,9 @@
 <div id='output'></div>
 	<form action='search.php' method='POST' class='searchForm'>
 		<label>Title</label><br>
-		<input type='text' name='title'><br>
+		<input type='text' name='title' value="<?php echo isPostSet($_POST['title']); ?>"><br>
 		<label>Abstract</label><br>
-		<textarea name='abstract'></textarea><br>
+		<textarea name='abstract'><?php echo isPostSet($_POST['abstract']); ?></textarea><br>
 		<input type='submit' value='Search' name='search'>
 	</form>
 	<button id='copy'>Copy</button>	
