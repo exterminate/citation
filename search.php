@@ -38,7 +38,7 @@
 ?>
 
 <div class='main'>
-<div id='output'></div>
+	<div id='output'></div>
 	<form action='search.php' method='POST' class='searchForm'>
 		<label>Title</label><br>
 		<input type='text' name='title' value="<?php echo $postTitle; ?>"><br>
@@ -46,8 +46,13 @@
 		<textarea name='abstract'><?php echo $postAbstract; ?></textarea><br>
 		<input type='submit' value='Search' name='search'>
 	</form>
-	<button id='copy'>Copy</button>	
-
+	<div>
+		<?php
+		if(!empty($postTitle) || !empty($postAbstract))
+			echo "<button id='copy'>Copy</button>";
+		?>
+	</div>
+	
 <?php
 
 
