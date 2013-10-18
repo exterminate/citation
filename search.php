@@ -6,6 +6,17 @@
 	}
 	$db = new MyDB();
 	$db->exec('CREATE TABLE if not exists citation (ID INT PRIMARY KEY NOT NULL,authors TEXT NOT NULL,journal TEXT NOT NULL,	year  TEXT NOT NULL,volume TEXT NOT NULL,issue TEXT NOT NULL,lastPage TEXT NOT NULL,user TEXT NOT NULL,hits TEXT NOT NULL,title TEXT NOT NULL,pages TEXT NOT NULL,abstract TEXT NOT NULL,doi TEXT NOT NULL)');
+	
+	if(!isset($_POST['abstract']))
+		$postAbstract = "";
+	else 	
+		$postAbstract = $_POST['abstract'];
+
+	if(!isset($_POST['title']))
+		$postTitle = "";
+	else 	
+		$postTitle = $_POST['title'];
+	
 ?>
 
 <!DOCTYPE html>
@@ -30,9 +41,9 @@
 <div id='output'></div>
 	<form action='search.php' method='POST' class='searchForm'>
 		<label>Title</label><br>
-		<input type='text' name='title' value="<?php echo isPostSet($_POST['title']); ?>"><br>
+		<input type='text' name='title' value="<?php echo $postTitle; ?>"><br>
 		<label>Abstract</label><br>
-		<textarea name='abstract'><?php echo isPostSet($_POST['abstract']); ?></textarea><br>
+		<textarea name='abstract'><?php echo $postAbstract; ?></textarea><br>
 		<input type='submit' value='Search' name='search'>
 	</form>
 	<button id='copy'>Copy</button>	

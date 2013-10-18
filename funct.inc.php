@@ -82,12 +82,7 @@
 		return $toReturn;
 	}
 	
-	function isPostSet($posted) {
-		if(isset($posted))
-			return $posted;
-		else 	
-			return "";
-	}
+
 	
 	
 ?>
