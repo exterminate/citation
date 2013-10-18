@@ -40,9 +40,9 @@
 <div class='main'>
 	<div id='output'></div>
 	<form action='search.php' method='POST' class='searchForm'>
-		<label>Title</label><br>
+		<label>Title</label>
 		<input type='text' name='title' value="<?php echo $postTitle; ?>"><br>
-		<label>Abstract</label><br>
+		<label>Abstract</label>
 		<textarea name='abstract'><?php echo $postAbstract; ?></textarea><br>
 
 		<div class="buttonDiv">
