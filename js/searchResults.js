@@ -23,8 +23,8 @@ $(document).ready(function(){
 		
 	});
 	
-	$('.individualRecord').bind('click', function(){ 
-		var $checkbox = $(this).find(':checkbox');
+	$('.selectionArea').bind('click', function(){ 
+		var $checkbox = $(this).parent().find(':checkbox');
 		$checkbox[0].checked = !$checkbox[0].checked;
 		$checkbox.trigger('change');
 	});
