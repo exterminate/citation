@@ -14,9 +14,10 @@
 ?>
 
 <div class='main'>
-
-<h1>Welcome</h1>
-
+	<div class='main'>
+		<h1>Welcome</h1>
+		<p>Quickly search for similar papers to boost citations.</p>
+	</div>
 </div>
 
 </body>
