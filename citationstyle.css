@@ -111,7 +111,7 @@ nav a:hover {
 	content: ", ";
 }
 
-.expand, #copy {
+.expand, #copy, .positionLeft, .positionRight {
 	background: #4683ea;
 	padding: 10px;
 	color: white;
@@ -125,10 +125,17 @@ nav a:hover {
 	background: #4683ba;
 }
 
-#copy {
-	margin: 10px;
-}
-
 .buttonDiv {
 	position: relative;
+	height: 25px;
+}
+
+.positionLeft{
+	position: absolute;
+	left: 0
+}
+
+.positionRight {
+	position: absolute;
+	right: 0
 }

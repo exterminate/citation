@@ -44,14 +44,20 @@
 		<input type='text' name='title' value="<?php echo $postTitle; ?>"><br>
 		<label>Abstract</label><br>
 		<textarea name='abstract'><?php echo $postAbstract; ?></textarea><br>
-		<input type='submit' value='Search' name='search'>
+
+		<div class="buttonDiv">
+			<input type='submit' value='Search' name='search' class='positionLeft'>
+
+			<?php
+			if(!empty($postTitle) || !empty($postAbstract))
+				echo "<button id='copy' class='positionRight'>Copy</button>";
+			?>
+			
+		</div>
+
+		
+
 	</form>
-	<div>
-		<?php
-		if(!empty($postTitle) || !empty($postAbstract))
-			echo "<button id='copy'>Copy</button>";
-		?>
-	</div>
 	
 <?php
 
