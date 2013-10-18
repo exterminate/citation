@@ -73,9 +73,11 @@
 										<p class='volume'>".$item['volume']."</p>
 										<p class='pages'>".$item['pages']."</p>
 									</div>
+									<input type='checkbox' class='chk' id='chk".$key."' hidden/>
+									<img class='tick' src='images/tick.jpg' hidden/>
 								</div>
-								<input type='checkbox' class='chk' id='chk".$key."' hidden/>
-								<img class='tick' src='images/tick.jpg' hidden/>
+								
+								
 								<button class='expand'>Show abstract >>></button>
 								";
 				$toReturn .= "</div>";
