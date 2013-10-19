@@ -62,9 +62,23 @@
 		// put each record in a div
 		foreach($dbarray as $key => $item) {
 			if($item['hits'] > 0) {
-				
-				//$authors = str_replace(" ;", ", ", $item['authors']);
+
 				$authors = $item['authors'];
+				$authorArray = explode(";",$authors);
+				for ($a = 0; $a < count($authorArray); $a++) {
+					$individualAuthor = explode(",",trim($authorArray[$a]));
+					$indAuth = "";
+					
+					for ($b = 1; $b < count($individualAuthor); $b++) {
+						$indAuth .= $individualAuthor[$b]." ";
+					}
+					$indAuth .= " ".$individualAuthor[0].", ";
+					$authorArray[$a] = $indAuth;
+
+				
+				} 
+				
+				$authors = implode("",$authorArray);
 				
 				$toReturn .= "<div class='individualRecord' id='".$key."'>";
 				$toReturn .= "	<div class='selectionArea'>
