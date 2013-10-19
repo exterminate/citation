@@ -62,19 +62,26 @@
 		// put each record in a div
 		foreach($dbarray as $key => $item) {
 			if($item['hits'] > 0) {
+				
+				//$authors = str_replace(" ;", ", ", $item['authors']);
+				$authors = $item['authors'];
+				
 				$toReturn .= "<div class='individualRecord' id='".$key."'>";
 				$toReturn .= "	<div class='selectionArea'>
 									<p class='title'>".$item['title']."</p>
 									<p class='abstract' hidden>".$item['abstract']."</p>
 									<p class='match'>".$item['hits']."</p>
 									<div class='citation' hidden>
+										<p class='authors'>".$authors."</p>
 										<p class='journal'>".$item['journal']."</p>
 										<p class='year'>".$item['year']."</p>
 										<p class='volume'>".$item['volume']."</p>
 										<p class='pages'>".$item['pages']."</p>
 									</div>
 									<input type='checkbox' class='chk' id='chk".$key."' hidden/>
-									<img class='tick' src='images/tick.jpg' hidden/>
+									<div class='triangle' hidden></div>
+									<img class='tick right' src='images/star.png' hidden/>
+									
 								</div>
 								
 								

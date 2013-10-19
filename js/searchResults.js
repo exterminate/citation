@@ -28,6 +28,7 @@ $(document).ready(function(){
 		$checkbox[0].checked = !$checkbox[0].checked;
 		$checkbox.trigger('change');
 		$(this).parent().find('.tick').toggle(400);
+		$(this).parent().find('.triangle').toggle(400);
 	});
 	
 	$('#copy').click(function(){
