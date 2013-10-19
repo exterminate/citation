@@ -49,6 +49,10 @@ nav a:hover {
 	padding: 10px;
 }
 
+.welcome p, .welcome h2 {
+	padding-bottom: 10px;
+}
+
 .searchForm input[type='text'],.searchForm textarea {
 	width: 100%;
 	font-size: 1em;
