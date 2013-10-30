@@ -1,3 +1,3 @@
 	<header>
-		<h1>EES citation finder</h1>
+		<h1>Citation finder</h1>
 	</header>
