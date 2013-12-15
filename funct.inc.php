@@ -42,14 +42,6 @@
 		$title = str_replace($stopwords," ",$title);
 		$descr = str_replace($stopwords," ",$descr);
 		
-		/*for($i = 0; $i < count($stopwords); $i++){
-		    $title = str_replace($stopwords[$i]," ", strtolower($title));    
-		}
-		
-		for($i = 0; $i < count($stopwords); $i++){
-			$descr = str_replace($stopwords[$i]," ", strtolower($descr));    
-		}*/
-		
 		$titArray = explode(" ", trim(str_replace($before,$after,$title)));
 		$desArray = explode(" ", trim(str_replace($before,$after,$descr)));
 
@@ -143,6 +135,31 @@
 	}
 	
 
+	function if_integer($num)
+	{
+		if($num == 0)
+			die("<p>Only integers are allowed in the volume and page boxes. Go back and try again</p>");
+		else
+			return $num;
+	}
 	
+	function author_tidy($authors)
+	{
+		$authorArray = explode(";",$authors);
+		for ($a = 0; $a < count($authorArray); $a++) 
+		{
+			$individualAuthor = explode(",",trim($authorArray[$a]));
+			$indAuth = "";
+							
+			for ($b = 1; $b < count($individualAuthor); $b++) 
+			{
+				$indAuth .= $individualAuthor[$b]." ";
+			}
+			$indAuth .= " ".$individualAuthor[0].", ";
+			$authorArray[$a] = $indAuth;
+		} 						
+		$authors = implode("",$authorArray);
+		return $authors;
+	}
 	
 ?>
