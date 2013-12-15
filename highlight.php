@@ -4,7 +4,8 @@
 	if(file_exists("highlights.inc.php"))
 	{
 		$highlighted_articles = json_decode(file_get_contents("highlights.inc.php"),true);
-	}	
+	}else
+		$highlighted_articles = array();	
 	
 	class MyDB extends SQLite3 { function __construct() { $this->open('myDatabase.db'); } }
 	$db = new MyDB();
