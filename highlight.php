@@ -92,6 +92,10 @@
 ?>
 <div class='main'>
 
+<div class='records'>
+
+<h2>Add an article to highlighted list</h2>
+
 <form method='POST' action='highlight.php'>
 	<table>
 		<tr>
@@ -135,6 +139,7 @@
 		
 	?>
 
+</div>
 </div>
 
 </div>

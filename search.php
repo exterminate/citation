@@ -58,7 +58,7 @@
 		
 
 	</form>
-	
+	<div class='capture'>	
 <?php
 
 
@@ -78,8 +78,36 @@ if(isset($_POST['search'])) {
 		$descr = $_POST['abstract'];
 	echo searchMatch($dbarray,$title,$descr);
 }
+
 ?>
 
-</div>
+
+
+		<div class='highlightRecords'>
+			<h2>Highlighted articles</h2>
+<?php
+
+// show highlighted articles
+
+if(file_exists("highlights.inc.php"))
+{
+	$highlighted_articles = json_decode(file_get_contents("highlights.inc.php"),true);
+}else
+	$highlighted_articles = array();	
+			
+foreach($highlighted_articles as $art) //highlighted articles
+{
+	foreach($dbarray as $key => $item) // articles from database
+	{ 
+		if ($art['page'] == $item['pages'] && $art['vol'] == $item['volume'] && substr($art['journal'],0,5) == substr($item['journal'],0,5)) {
+			echo "<p><b><a href='#".str_replace(' ','_',$item['title'])."'>".$item['title']."</a></b><br>".author_tidy($item['authors'])." ".$item['journal'].", <b>". $item['volume']."</b>, ".$item['pages']."</p><br>";
+		}
+	}
+}
+
+?>
+		</div>
+	</div>
+</div>	
 </body>
 </html>

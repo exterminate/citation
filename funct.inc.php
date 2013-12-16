@@ -83,7 +83,7 @@
 		array_multisort($hits,SORT_DESC,$dbarray);
 		
 		//results
-		$toReturn = "<div class='records'>";
+		$toReturn = "<div class='searchRecords'><h2>Search results</h2>";
 		
 		// put each record in a div
 		foreach($dbarray as $key => $item) {
@@ -108,7 +108,7 @@
 				
 				$toReturn .= "<div class='individualRecord' id='".$key."'>";
 				$toReturn .= "	<div class='selectionArea'>
-									<p class='title'>".$item['title']."</p>
+									<p class='title' id='#".str_replace(' ','_',$item['title'])."'>".$item['title']."</p>
 									<p class='abstract' hidden>".$item['abstract']."</p>
 									<p class='match'>".$item['hits']."</p>
 									<div class='citation' hidden>
