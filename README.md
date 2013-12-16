@@ -1,4 +1,4 @@
 citation
 ========
 
-POtential additions, a featured list to push certain reviews
+Potential additions, a featured list to push certain reviews
