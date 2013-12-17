@@ -100,7 +100,7 @@ foreach($highlighted_articles as $art) //highlighted articles
 	foreach($dbarray as $key => $item) // articles from database
 	{ 
 		if ($art['page'] == $item['pages'] && $art['vol'] == $item['volume'] && substr($art['journal'],0,5) == substr($item['journal'],0,5)) {
-			echo "<p><b><a href='#".str_replace(' ','_',$item['title'])."'>".$item['title']."</a></b><br>".author_tidy($item['authors'])." ".$item['journal'].", <b>". $item['volume']."</b>, ".$item['pages']."</p><br>";
+			echo "<p><b>".$item['title']."</b><br>".author_tidy($item['authors'])." ".$item['journal'].", <b>". $item['volume']."</b>, ".$item['pages']."</p><p class='toggleAbs'><a>&rarr;Toggle abstract</a><br><span class='small' style='display:none;'>".$item['abstract']."</span></p><br>";
 		}
 	}
 }
@@ -109,5 +109,14 @@ foreach($highlighted_articles as $art) //highlighted articles
 		</div>
 	</div>
 </div>	
+
+<script>
+$(document).ready(function(){
+	$(".toggleAbs a").click(function(){
+		$(".toggleAbs span").toggle();
+	});	
+	
+});
+</script>
 </body>
 </html>

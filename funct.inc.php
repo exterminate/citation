@@ -108,7 +108,7 @@
 				
 				$toReturn .= "<div class='individualRecord' id='".$key."'>";
 				$toReturn .= "	<div class='selectionArea'>
-									<p class='title' id='#".str_replace(' ','_',$item['title'])."'>".$item['title']."</p>
+									<p class='title'>".$item['title']."</p>
 									<p class='abstract' hidden>".$item['abstract']."</p>
 									<p class='match'>".$item['hits']."</p>
 									<div class='citation' hidden>
