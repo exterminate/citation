@@ -20,6 +20,19 @@
 		die($error);
 	}
 
+	// Delete a gighlighted article
+	
+	if(isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['num']))
+	{	
+		unset($highlighted_articles[$_GET['num']]);
+		$json_encoded = json_encode($highlighted_articles);
+		file_put_contents("highlights.inc.php", $json_encoded);
+		header("Location: highlight.php");
+		exit;
+	}else {
+		$_GET['action'] = "";
+		$_GET['num'] = "";
+	}
 	
 	if(isset($_POST['submit']) && $_POST['submit'] == "Highlight")
 	{
@@ -126,12 +139,12 @@
 		// find details that match from highlight file
 		
 				
-		foreach($highlighted_articles as $art) //highlighted articles
+		foreach($highlighted_articles as $it => $art) //highlighted articles
 		{
 			foreach($dbarray as $key => $item) // articles from database
 			{ 
 				if ($art['page'] == $item['pages'] && $art['vol'] == $item['volume'] && substr($art['journal'],0,5) == substr($item['journal'],0,5)) {
-					echo "<p><b>".$item['title']."</b><br>".author_tidy($item['authors'])."<br>".$item['journal'].", <b>". $item['volume']."</b>, ".$item['pages']."</p><br>";
+					echo "<div class='highlightSection'><p><b>".$item['title']."</b> - <a href='highlight.php?action=delete&num=".$it."'>delete</a><br>".author_tidy($item['authors'])."<br>".$item['journal'].", <b>". $item['volume']."</b>, ".$item['pages']."</p><p class='small'>".$item['abstract']."</p></div><br>";
 				}
 			}
 		}

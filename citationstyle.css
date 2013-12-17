@@ -188,3 +188,11 @@ nav a:hover {
 	bottom: -45px;
 	
 }
+
+.small {
+	font-size: 90%
+}
+
+.highlightSection:hover {
+	background:#eee
+}
